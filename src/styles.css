@@ -1,0 +1,141 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ERA design system — Heritage editorial. Palette: Lavender #A89CCB, Deep Purple #7B6B96, Sand #D9C9B8, Ivory #F8F6F2 */
+
+@theme inline {
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Jost", system-ui, sans-serif;
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+  --radius-xl: calc(var(--radius) + 6px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-lavender: var(--lavender);
+  --color-sand: var(--sand);
+  --color-ivory: var(--ivory);
+  --color-plum: var(--plum);
+  --color-overlay: var(--overlay);
+}
+
+:root {
+  --radius: 0.375rem;
+  --lavender: oklch(0.72 0.065 295);
+  --plum: oklch(0.55 0.065 302);
+  --sand: oklch(0.84 0.03 65);
+  --ivory: oklch(0.973 0.006 85);
+  --overlay: oklch(0.2 0.04 300);
+
+  --background: var(--ivory);
+  --foreground: oklch(0.27 0.035 300);
+  --card: oklch(0.99 0.004 85);
+  --card-foreground: var(--foreground);
+  --popover: oklch(0.99 0.004 85);
+  --popover-foreground: var(--foreground);
+  --primary: oklch(0.5 0.07 302);
+  --primary-foreground: var(--ivory);
+  --secondary: oklch(0.93 0.018 70);
+  --secondary-foreground: var(--foreground);
+  --muted: oklch(0.945 0.012 75);
+  --muted-foreground: oklch(0.47 0.03 300);
+  --accent: oklch(0.92 0.03 295);
+  --accent-foreground: oklch(0.4 0.07 302);
+  --destructive: oklch(0.52 0.15 25);
+  --destructive-foreground: var(--ivory);
+  --success: oklch(0.48 0.07 302);
+  --border: oklch(0.88 0.02 70);
+  --input: oklch(0.85 0.022 70);
+  --ring: var(--lavender);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { -webkit-font-smoothing: antialiased; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-weight: 400;
+  }
+  h1, h2, h3, .font-display { font-family: var(--font-display); font-weight: 500; letter-spacing: -0.01em; }
+  :focus-visible { outline: 2px solid var(--lavender); outline-offset: 2px; }
+}
+
+@layer components {
+  .eyebrow { font-size: 0.7rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--color-muted-foreground); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; padding: .75rem 1.5rem; border-radius: var(--radius); font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; transition: background-color .25s, color .25s, border-color .25s, opacity .25s; cursor: pointer; }
+  .btn:disabled { opacity: .45; cursor: not-allowed; }
+  .btn-primary { background: var(--color-primary); color: var(--color-primary-foreground); }
+  .btn-primary:not(:disabled):hover { background: color-mix(in oklab, var(--color-primary) 85%, black); }
+  .btn-outline { border: 1px solid var(--color-primary); color: var(--color-primary); background: transparent; }
+  .btn-outline:not(:disabled):hover { background: var(--color-accent); }
+  .btn-danger { background: var(--color-destructive); color: var(--color-destructive-foreground); }
+  .link-quiet { color: var(--color-primary); text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--lavender); }
+  .field-label { display: block; font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--color-muted-foreground); margin-bottom: .45rem; }
+  .field { width: 100%; background: var(--color-card); border: 1px solid var(--color-input); border-radius: var(--radius); padding: .75rem .9rem; font-size: .95rem; color: var(--color-foreground); transition: border-color .2s, box-shadow .2s; }
+  .field:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 3px color-mix(in oklab, var(--lavender) 35%, transparent); }
+  .field[aria-invalid="true"] { border-color: var(--color-destructive); }
+  .field-error { margin-top: .35rem; font-size: .8rem; color: var(--color-destructive); }
+  .panel { background: var(--color-card); border: 1px solid var(--color-border); border-radius: var(--radius-lg); }
+  .rule { height: 1px; background: linear-gradient(90deg, transparent, var(--sand), transparent); }
+  .status-pill { display: inline-block; padding: .2rem .7rem; border-radius: 999px; font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; }
+  .status-confirmed { background: var(--color-accent); color: var(--color-accent-foreground); }
+  .status-completed { background: var(--color-secondary); color: var(--color-foreground); border: 1px solid var(--sand); }
+  .notice { padding: .75rem 1rem; border-radius: var(--radius); font-size: .88rem; }
+  .notice-error { background: color-mix(in oklab, var(--color-destructive) 10%, var(--ivory)); color: var(--color-destructive); }
+  .notice-success { background: var(--color-accent); color: var(--color-accent-foreground); }
+
+  /* Heritage ticket */
+  .ticket { position: relative; background: var(--color-card); border: 1px solid var(--sand); border-radius: var(--radius-xl); box-shadow: 0 30px 60px -40px color-mix(in oklab, var(--plum) 60%, transparent); }
+  .ticket::before { content: ""; position: absolute; inset: 10px; border: 1px solid color-mix(in oklab, var(--lavender) 55%, transparent); border-radius: var(--radius-lg); pointer-events: none; }
+  .ticket-perf { border-left: 2px dashed var(--sand); }
+  .ticket-notch { position: absolute; width: 26px; height: 26px; border-radius: 999px; background: var(--color-background); border: 1px solid var(--sand); }
+
+  /* Passport booklet */
+  .passport { background: var(--plum); padding: 14px; border-radius: 14px; box-shadow: 0 40px 80px -50px color-mix(in oklab, var(--plum) 90%, transparent); }
+  .passport-page { background: var(--ivory); background-image: radial-gradient(circle at 1px 1px, color-mix(in oklab, var(--sand) 55%, transparent) 1px, transparent 0); background-size: 18px 18px; }
+  .passport-spine { box-shadow: inset -14px 0 18px -14px color-mix(in oklab, var(--plum) 45%, transparent); }
+  .stamp { aspect-ratio: 1; border-radius: 999px; border: 2px solid var(--plum); outline: 1px solid var(--lavender); outline-offset: 4px; color: var(--plum); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 1.1rem; transform: rotate(var(--tilt, -4deg)); background: color-mix(in oklab, var(--lavender) 8%, transparent); }
+
+  /* Intro / login reveal */
+  .intro-image { position: absolute; top: 0; bottom: 0; right: 0; width: 100%; transition: width 1.2s cubic-bezier(.7,0,.2,1); }
+  .intro-revealed .intro-image { width: 50%; }
+  .intro-form { opacity: 0; transform: translateX(-16px); transition: opacity .8s ease .7s, transform .8s ease .7s; }
+  .intro-revealed .intro-form { opacity: 1; transform: none; }
+  .intro-shade { background: linear-gradient(180deg, color-mix(in oklab, var(--overlay) 45%, transparent), color-mix(in oklab, var(--overlay) 10%, transparent) 40%, color-mix(in oklab, var(--overlay) 55%, transparent)); }
+  .intro-copy { color: var(--ivory); text-shadow: 0 2px 24px color-mix(in oklab, var(--overlay) 70%, transparent); }
+  .logo-plate { background: color-mix(in oklab, var(--ivory) 92%, transparent); border-radius: var(--radius-lg); }
+
+  .fade-up { animation: fade-up .6s ease both; }
+}
+
+@keyframes fade-up { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+@media (max-width: 1023px) {
+  .intro-image, .intro-revealed .intro-image { position: relative; width: 100%; transition: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-image, .intro-form, .fade-up { transition: none !important; animation: none !important; }
+}
